@@ -11,7 +11,7 @@ class Leave(models.Model):
 
 class UserLeave(models.Model):
     leave = models.ForeignKey(Leave,on_delete=models.CASCADE)
-    user_leave = models.FloatField(default='0')
+    user_leave = models.FloatField(default='0',validators=[MinValueValidator(0.5)])
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
