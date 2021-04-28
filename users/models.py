@@ -9,9 +9,14 @@ class Leave(models.Model):
     def __str__(self):
         return self.title
 
+class GetLeave(models.Model):
+    leave = models.ForeignKey(Leave,on_delete=models.CASCADE)
+    user_get = models.FloatField(default=0)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+
 class UserLeave(models.Model):
     leave = models.ForeignKey(Leave,on_delete=models.CASCADE)
-    user_leave = models.FloatField(default='0',validators=[MinValueValidator(0.5)])
+    user_leave = models.FloatField(default=0,validators=[MinValueValidator(0.5)])
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
